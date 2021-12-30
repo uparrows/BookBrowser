@@ -1,0 +1,9 @@
+<br>
+{{if .Query}}
+{{if .Books}}
+<center>{{len .Books}} books found</center>
+{{else}}
+<center>未找到与您的查询相符的图书 "{{.Query}}"</center>
+{{end}}
+{{template "books" .}}
+{{end}}

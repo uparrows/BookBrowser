@@ -1,0 +1,48 @@
+{{with .Book}}
+<div class="single-book">
+    <div class="cover">
+        {{if .HasCover}}
+        <img src="/covers/{{.ID}}.jpg" alt="cover">
+        {{else}}
+        <img src="/static/nocover.jpg" alt="cover">
+        {{end}}
+        <div class="buttons">
+            <a href="/download/{{.ID}}.{{.FileType}}" class="button download">下载 {{ .FileType | ToUpper }}</a>
+            {{if eq .FileType "epub"}}
+            <a class="button read" href="/static/reader/epub/#!/download/{{.ID}}.{{.FileType}}">阅读</a>
+            {{end}} {{if eq .FileType "pdf"}}
+            <a class="button read" href="/static/reader/pdf/web/viewer.html?file=/download/{{.ID}}.{{.FileType}}`">阅读</a>
+            {{end}}
+        </div>
+    </div>
+    <div class="meta">
+        <div class="title">{{.Title}}</div>
+        {{if .Author}}
+        <a href="/authors/{{.AuthorID}}" class="author">{{.Author}}</a>
+        {{end}} {{if .Series}}
+        <div class="series">
+            <a href="/series/{{.SeriesID}}" class="name">{{.Series}}</a> -
+            <span class="index">{{.SeriesIndex}}</span>
+        </div>
+        {{end}} {{if .Description}}
+        <div class="description">
+            {{.Description | raw}}
+        </div>
+        {{end}}
+        {{if .PublishDate}}
+        <div>{{.PublishDate.Format "Jan, 2006"}}</div>
+        {{end}}
+        {{if .ISBN}}
+        <div>ISBN: {{.ISBN}}</div>
+        {{end}}
+        <div class="buttons">
+            <a href="/download/{{.ID}}.{{.FileType}}" class="button download">下载 {{ .FileType | ToUpper }}</a>
+            {{if eq .FileType "epub"}}
+            <a class="button read" href="/static/reader/epub/#!/download/{{.ID}}.{{.FileType}}">阅读</a>
+            {{end}} {{if eq .FileType "pdf"}}
+            <a class="button read" href="/static/reader/pdf/web/viewer.html?file=/download/{{.ID}}.{{.FileType}}`">阅读</a>
+            {{end}}
+        </div>
+    </div>
+</div>
+{{end}}

@@ -1,0 +1,27 @@
+<div class="current-view books cards">
+    {{range .Books}}
+    <div class="book">
+        <a href="/books/{{.ID}}" class="cover">
+            {{if .HasCover}}
+            <img src="/covers/{{.ID}}_thumb.jpg" alt="cover">
+            {{else}}
+            <img src="/static/nocover.jpg" alt="cover">
+            {{end}}
+        </a>
+        <div class="meta">
+            <a href="/books/{{.ID}}" class="title">{{.Title}}</a>
+            {{if .Author}}
+            <a href="/authors/{{.AuthorID}}" class="author">{{.Author}}</a>
+            {{end}} {{if .Series}}
+            <div class="series">
+                <a href="/series/{{.SeriesID}}" class="name">{{.Series}}</a>
+                -
+                <span class="index">{{.SeriesIndex}}</span>
+            </div>
+            {{end}}
+        </div>
+    </div>
+    {{end}}
+</div>
+
+{{if not .Books}} 未找到（或仍在编制索引）{{end}}
