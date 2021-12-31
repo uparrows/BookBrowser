@@ -83,7 +83,7 @@ func (i *Indexer) Refresh() ([]error, error) {
 
 	for fi, filepath := range filenames {
 		if i.Verbose {
-			log.Printf("Indexing %s", filepath)
+			log.Printf("索引中 %s", filepath)
 		}
 
 		book, err := i.getBook(filepath)

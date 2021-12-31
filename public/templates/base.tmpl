@@ -102,7 +102,7 @@
                 if (status.indexing) {
                     idxd = true;
                     prog.style.display = "block";
-                    prog.innerHTML = "Indexing: " + (Math.round(status.progress * 100)).toString() + "%";
+                    prog.innerHTML = "索引中: " + (Math.round(status.progress * 100)).toString() + "%";
                     window.setTimeout(checkIndexer, 50)
                 } else {
                     if (idxd) return window.location.reload(true);

@@ -79,15 +79,15 @@ func (s *Server) printLog(format string, v ...interface{}) {
 func (s *Server) RefreshBookIndex() error {
 	errs, err := s.Indexer.Refresh()
 	if err != nil {
-		log.Printf("Error indexing: %s", err)
+		log.Printf("索引错误: %s", err)
 		return err
 	}
 	if len(errs) != 0 {
 		if s.Verbose {
-			log.Printf("Indexing finished with %v errors", len(errs))
+			log.Printf("索引完成但遇到 %v 个错误", len(errs))
 		}
 	} else {
-		log.Printf("Indexing finished")
+		log.Printf("索引完成")
 	}
 
 	debug.FreeOSMemory()
