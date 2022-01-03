@@ -3,7 +3,16 @@
 
 这是nas端图书管理器BookBrowser的汉化版
 
-一个易于使用的工具，用于生成基于 Web 的 ePub 和 PDF 电子书浏览器。您需要做的就是将其下载到您的电子书所在的文件夹中，然后运行它。还有一个演示。
+一个易于使用的工具，用于生成基于 Web 的 ePub 和 PDF 电子书浏览器。您需要做的就是将其下载到您的电子书所在的文件夹中，然后运行它。还有一个演示功能。
+
+
+[<img src="https://img.shields.io/docker/pulls/dezhao/bookbrowser_cn.svg">](https://hub.docker.com/r/dezhao/bookbrowser_cn/)
+
+
+[📄 教程](https://yuanfangblog.xyz/technology/545.html) 
+
+![扫码查看详细](https://user-images.githubusercontent.com/38988286/147882172-cba65035-2b2b-456f-ac0d-a85f867ab892.png)
+
 
 # 特征
 多种书籍格式
@@ -54,21 +63,25 @@ mobi（基本支持）
 
 ## 截图
 
-| ![](docs/screenshots/books-mobile.png) | ![](docs/screenshots/books-list-mobile.png) | ![](docs/screenshots/authors-mobile.png) | ![](docs/screenshots/book-mobile.png) |
-| --- | --- | --- | --- |
-| ![](docs/screenshots/books-desktop.png) | ![](docs/screenshots/books-list-desktop.png) | ![](docs/screenshots/authors-desktop.png) | ![](docs/screenshots/book-desktop.png) |
+![book-desktop](https://user-images.githubusercontent.com/38988286/147832550-ed71ee21-a5cb-475e-b25f-35a7f84a38f3.png)
+![books-list-mobile](https://user-images.githubusercontent.com/38988286/147832556-95db2d72-8b03-4d01-8ae6-5ce38091bd68.png)
+![authors-mobile](https://user-images.githubusercontent.com/38988286/147832558-bd7f99da-4ac3-4ff8-b62f-bf627d00755b.png)
+![book-mobile](https://user-images.githubusercontent.com/38988286/147832566-72e6db38-20a8-48f3-8ebb-4ea2738e7d45.png)
+
 
 ## 阅读器截图
 
 | 桌面 | 移动 |
 | --- | --- |
-| ![](docs/screenshots/reader-desktop.png) | ![](docs/screenshots/reader-mobile.png) |
+| ![reader-desktop](https://user-images.githubusercontent.com/38988286/147832624-020b8bb9-5906-4fbc-87c4-947821812ce2.png) |![reader-mobile](https://user-images.githubusercontent.com/38988286/147832639-93d2e5f5-4179-4af0-9091-86e1071eb041.png)
+ |
 
 ## 高级搜索
 
-| ![](docs/screenshots/list-desktop.png) |
-| --- |
-| |
+
+
+| ![list-desktop](https://user-images.githubusercontent.com/38988286/147832650-e8a4cb77-59ff-4aa3-ae92-c623e4e2f1da.png)
+
 
 ## 系统要求
 服务器适用于所有平台。
