@@ -49,7 +49,7 @@ let App = function (el) {
         this.qs(".bar .loc").style.cursor = "pointer";
         this.qs(".bar .loc").addEventListener("click", event => {
             try {
-                let answer = prompt(`Location to go to (up to ${this.state.book.locations.length()})?`, this.state.rendition.currentLocation().start.location);
+                let answer = prompt(`跳转到? (共计 ${this.state.book.locations.length()})页`, this.state.rendition.currentLocation().start.location);
                 if (!answer) return;
                 answer = answer.trim();
                 if (answer == "") return;
@@ -458,7 +458,7 @@ App.prototype.loadFonts = function() {
 
 App.prototype.onRenditionRelocatedUpdateIndicators = function (event) {
     try {
-        let stxt = (event.start.location > 0) ? `页${event.start.location}/共${this.state.book.locations.length()}` : ((event.start.percentage > 0 && event.start.percentage < 1) ? `${Math.round(event.start.percentage * 100)}%` : ``);
+        let stxt = (event.start.location > 0) ? `页${event.start.location}|共${this.state.book.locations.length()}` : ((event.start.percentage > 0 && event.start.percentage < 1) ? `${Math.round(event.start.percentage * 100)}%` : ``);
         this.qs(".bar .loc").innerHTML = stxt;
     } catch (err) {
         console.error("error updating indicators");

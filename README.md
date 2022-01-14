@@ -1,9 +1,10 @@
+This repo is a fork of pgaskin/BookBrowser ，what i've done was translated this repo into chinese ,and fix some js problems. thanks to pgaskin for developing this software.
 
 # 图书库
 
-这是nas端图书管理器BookBrowser的汉化版
+这是nas端图书管理器BookBrowser的汉化版，由本人将其汉化，并且修复一些js问题，添加一些功能 ,原仓库见：https://github.com/pgaskin/BookBrowser
 
-一个易于使用的工具，用于生成基于 Web 的 ePub 和 PDF 电子书浏览器。您需要做的就是将其下载到您的电子书所在的文件夹中，然后运行它。还有一个演示功能。
+一个易于使用的工具，用于生成基于 Web 的 ePub 和 PDF 电子书浏览器。您需要做的就是将其下载到您的电子书所在的文件夹中，然后运行它。还有一个演示的功能。
 
 
 [<img src="https://img.shields.io/docker/pulls/dezhao/bookbrowser_cn.svg">](https://hub.docker.com/r/dezhao/bookbrowser_cn/)

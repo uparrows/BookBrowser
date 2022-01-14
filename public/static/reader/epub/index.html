@@ -195,8 +195,7 @@
         </div>
         <div class="bar">
             <div class="left">
-                <button class="prev hidden">
-                    <i class="icon material-icons">chevron_left</i>
+                <button class="prev hidden" id="Time">
                 </button>
             </div>
             <div class="loc"></div>
@@ -207,7 +206,23 @@
             </div>
         </div>
     </div>
-
+	<script type="text/javascript">
+		window.onload=function(){
+		function addZero(i) {
+		if (i < 10) {
+		i = "0" + i;
+		}
+		return i;
+		}
+		setInterval(function(){
+		var date=new Date();
+		var h=addZero(date.getHours()); //获取小时
+		var m=addZero(date.getMinutes()); //获取分钟
+		var d=document.getElementById('Time'); 
+		d.innerHTML= h+':'+m;
+		},1000) 
+		}
+	    </script>
     <script>
         function isIE(userAgent) {
             userAgent = userAgent || navigator.userAgent;
