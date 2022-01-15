@@ -446,8 +446,8 @@ App.prototype.applyTheme = function () {
 App.prototype.loadFonts = function() {
     this.state.rendition.getContents().forEach(c => {
         [
-            "https://fonts.googleapis.com/css?family=Arbutus+Slab",
-            "https://fonts.googleapis.com/css?family=Lato:400,400i,700,700i"
+            "/static/reader/epub/libs/css1.css",
+            "/static/reader/epub/libs/css2.css"
         ].forEach(url => {
             let el = c.document.body.appendChild(c.document.createElement("link"));
             el.setAttribute("rel", "stylesheet");
