@@ -4,7 +4,7 @@ window.onerror = function (msg, url, line, column, err) {
     if (msg.indexOf("Permission denied") > -1) return;
     if (msg.indexOf("Object expected") > -1 && url.indexOf("epub") > -1) return;
     document.querySelector(".app .error").classList.remove("hidden");
-    document.querySelector(".app .error .error-title").innerHTML = "Error";
+    document.querySelector(".app .error .error-title").innerHTML = "错误";
     document.querySelector(".app .error .error-description").innerHTML = "请尝试重新加载页面或使用其他浏览器（Chrome 或 Firefox），如果错误仍然存在，请 <a href=\"https://github.com/geek1011/ePubViewer/issues\">报告问题</a>.";
     document.querySelector(".app .error .error-info").innerHTML = msg;
     document.querySelector(".app .error .error-dump").innerHTML = JSON.stringify({
@@ -33,7 +33,7 @@ let App = function (el) {
         try {
             if (event.target.classList.contains("sidebar-wrapper")) event.target.classList.add("out");
         } catch (err) {
-            this.fatal("error hiding sidebar", err);
+            this.fatal("隐藏侧边栏出错", err);
         }
     });
     this.qsa(".chips[data-chips]").forEach(el => {
@@ -55,11 +55,11 @@ let App = function (el) {
                 if (answer == "") return;
 
                 let parsed = parseInt(answer, 10);
-                if (isNaN(parsed) || parsed < 0) throw new Error("Invalid location: not a positive integer");
-                if (parsed > this.state.book.locations.length()) throw new Error("Invalid location");
+                if (isNaN(parsed) || parsed < 0) throw new Error("位置无效: 不是正整数");
+                if (parsed > this.state.book.locations.length()) throw new Error("位置无效");
 
                 let cfi = this.state.book.locations.cfiFromLocation(parsed);
-                if (cfi === -1) throw new Error("Invalid location");
+                if (cfi === -1) throw new Error("位置无效");
 
                 this.state.rendition.display(cfi);
             } catch (err) {
@@ -67,7 +67,7 @@ let App = function (el) {
             }
         });
     } catch (err) {
-        this.fatal("error attaching event handlers for location go to", err);
+        this.fatal("跳转附加事件处理程序出错", err);
         throw err;
     }
 
@@ -76,7 +76,7 @@ let App = function (el) {
     try {
         this.loadSettingsFromStorage();
     } catch (err) {
-        this.fatal("error loading settings", err);
+        this.fatal("加载设置出错", err);
         throw err;
     }
     this.applyTheme();
@@ -96,15 +96,15 @@ App.prototype.doBook = function (url, opts) {
         this.qs(".book").innerHTML = "";
         this.state.rendition = this.state.book.renderTo(this.qs(".book"), {});
     } catch (err) {
-        this.fatal("error loading book", err);
+        this.fatal("加载图书出错", err);
         throw err;
     }
 
-    this.state.book.ready.then(this.onBookReady.bind(this)).catch(this.fatal.bind(this, "error loading book"));
+    this.state.book.ready.then(this.onBookReady.bind(this)).catch(this.fatal.bind(this, "加载图书出错"));
 
-    this.state.book.loaded.navigation.then(this.onNavigationLoaded.bind(this)).catch(this.fatal.bind(this, "error loading toc"));
-    this.state.book.loaded.metadata.then(this.onBookMetadataLoaded.bind(this)).catch(this.fatal.bind(this, "error loading metadata"));
-    this.state.book.loaded.cover.then(this.onBookCoverLoaded.bind(this)).catch(this.fatal.bind(this, "error loading cover"));
+    this.state.book.loaded.navigation.then(this.onNavigationLoaded.bind(this)).catch(this.fatal.bind(this, "加载目录出错"));
+    this.state.book.loaded.metadata.then(this.onBookMetadataLoaded.bind(this)).catch(this.fatal.bind(this, "加载元数据出错"));
+    this.state.book.loaded.cover.then(this.onBookCoverLoaded.bind(this)).catch(this.fatal.bind(this, "加载封面出错"));
 
     this.state.rendition.hooks.content.register(this.applyTheme.bind(this));
     this.state.rendition.hooks.content.register(this.loadFonts.bind(this));
@@ -116,7 +116,7 @@ App.prototype.doBook = function (url, opts) {
     this.state.rendition.on("relocated", this.onRenditionRelocatedUpdateIndicators.bind(this));
     this.state.rendition.on("relocated", this.onRenditionRelocatedSavePos.bind(this));
     this.state.rendition.on("started", this.onRenditionStartedRestorePos.bind(this));
-    this.state.rendition.on("displayError", this.fatal.bind(this, "error rendering book"));
+    this.state.rendition.on("displayError", this.fatal.bind(this, "渲染图书出错"));
 
     this.state.rendition.display();
 
@@ -171,7 +171,7 @@ App.prototype.doOpenBook = function () {
                     encoding: "binary"
                 });
             } else {
-                this.fatal("invalid file", "not an epub book");
+                this.fatal("文件无效", "非epub图书");
             }
         }, false);
         if (fi.files[0]) {
@@ -185,7 +185,7 @@ App.prototype.doOpenBook = function () {
 App.prototype.fatal = function (msg, err, usersFault) {
     console.error(msg, err);
     document.querySelector(".app .error").classList.remove("hidden");
-    document.querySelector(".app .error .error-title").innerHTML = "Error";
+    document.querySelector(".app .error .error-title").innerHTML = "错误";
     document.querySelector(".app .error .error-description").innerHTML = usersFault ? "" : "请尝试重新加载页面或使用其他浏览器，如果错误仍然存在, <a href=\"https://github.com/geek1011/ePubViewer/issues\">请报告错误</a>.";
     document.querySelector(".app .error .error-info").innerHTML = msg + ": " + err.toString();
     document.querySelector(".app .error .error-dump").innerHTML = JSON.stringify({
@@ -219,7 +219,7 @@ App.prototype.doReset = function () {
     this.qs(".info .series-index").innerHTML = "";
     this.qs(".info .author").innerHTML = "";
     this.qs(".info .description").innerHTML = "";
-    this.qs(".book").innerHTML = '<div class="empty-wrapper"><div class="empty"><div class="app-name">ePubViewer</div><div class="message"><a href="javascript:ePubViewer.doOpenBook();" class="big-button">Open a Book</a></div></div></div>';
+    this.qs(".book").innerHTML = '<div class="empty-wrapper"><div class="empty"><div class="app-name">阅读器</div><div class="message"><a href="javascript:ePubViewer.doOpenBook();" class="big-button">打开图书</a></div></div></div>';
     this.qs(".sidebar-button").classList.add("hidden");
     this.qs(".bar button.prev").classList.add("hidden");
     this.qs(".bar button.next").classList.add("hidden");
@@ -252,16 +252,16 @@ App.prototype.onBookReady = function (event) {
     console.log("storedLocations", typeof stored == "string" ? stored.substr(0, 40) + "..." : stored);
 
     if (stored) return this.state.book.locations.load(stored);
-    console.log("generating locations");
+    console.log("生成位置");
     return this.state.book.locations.generate(chars).then(() => {
         localStorage.setItem(key, this.state.book.locations.save());
-        console.log("locations generated", this.state.book.locations);
-    }).catch(err => console.error("error generating locations", err));
+        console.log("位置已生成", this.state.book.locations);
+    }).catch(err => console.error("生成位置时出错", err));
 };
 
 App.prototype.onTocItemClick = function (href, event) {
     console.log("tocClick", href);
-    this.state.rendition.display(href).catch(err => console.warn("error displaying page", err));
+    this.state.rendition.display(href).catch(err => console.warn("显示页面出错", err));
     event.stopPropagation();
     event.preventDefault();
 };
@@ -294,7 +294,7 @@ App.prototype.onRenditionRelocated = function (event) {
 
         this.qsa(".toc-list .item").forEach(el => el.classList[(navItem && el.dataset.href == navItem.href) ? "add" : "remove"]("active"));
     } catch (err) {
-        this.fatal("error updating toc", err);
+        this.fatal("更新目录时出错", err);
     }
 };
 
@@ -318,7 +318,7 @@ App.prototype.onBookCoverLoaded = function (url) {
     }
     this.state.book.archive.createUrl(url).then(url => {
         this.qs(".cover").src = url;
-    }).catch(this.fatal.bind(this, "error loading cover"));
+    }).catch(this.fatal.bind(this, "加载封面时出错"));
 };
 
 App.prototype.onKeyUp = function (event) {
@@ -439,7 +439,7 @@ App.prototype.applyTheme = function () {
         this.ael.style.color = theme.fg;
         if(this.state.rendition) this.state.rendition.getContents().forEach(c => c.addStylesheetRules(rules));
     } catch (err) {
-        console.error("error applying theme", err);
+        console.error("应用主题时出错", err);
     }
 };
 
@@ -461,7 +461,7 @@ App.prototype.onRenditionRelocatedUpdateIndicators = function (event) {
         let stxt = (event.start.location > 0) ? `页${event.start.location}|共${this.state.book.locations.length()}` : ((event.start.percentage > 0 && event.start.percentage < 1) ? `${Math.round(event.start.percentage * 100)}%` : ``);
         this.qs(".bar .loc").innerHTML = stxt;
     } catch (err) {
-        console.error("error updating indicators");
+        console.error("更新指示器出错");
     }
 };
 
@@ -475,7 +475,7 @@ App.prototype.onRenditionStartedRestorePos = function (event) {
         console.log("storedPos", stored);
         if (stored) this.state.rendition.display(stored);
     } catch (err) {
-        this.fatal("error restoring position", err);
+        this.fatal("恢复位置出错", err);
     }
 };
 
@@ -547,7 +547,7 @@ App.prototype.onSearchClick = function (event) {
             textEl.innerText = result.excerpt.trim();
         });
         this.qs(".app .sidebar .search-results").appendChild(resultsEl);
-    }).catch(err => this.fatal("error searching book", err));
+    }).catch(err => this.fatal("查找图书出错", err));
 };
 
 App.prototype.doSidebar = function () {
@@ -567,13 +567,13 @@ try {
         fetch(ufn).then(resp => {
             if (resp.status != 200) throw new Error("response status: " + resp.status.toString() + " " + resp.statusText);
         }).catch(err => {
-            ePubViewer.fatal("error loading book", err, true);
+            ePubViewer.fatal("加载图书出错", err, true);
         });
         ePubViewer.doBook(ufn);
     }
 } catch (err) {
     document.querySelector(".app .error").classList.remove("hidden");
-    document.querySelector(".app .error .error-title").innerHTML = "Error";
+    document.querySelector(".app .error .error-title").innerHTML = "错误";
     document.querySelector(".app .error .error-description").innerHTML = "请尝试重新加载页面或使用其他浏览器（Chrome 或 Firefox），如果错误仍然存在，请 <a href=\"https://github.com/geek1011/ePubViewer/issues\">报告问题</a>.";
     document.querySelector(".app .error .error-dump").innerHTML = JSON.stringify({
         error: err.toString(),

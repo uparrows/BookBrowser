@@ -250,19 +250,19 @@ func (s *Server) handleDownload(w http.ResponseWriter, r *http.Request, p httpro
 				_, err = io.Copy(w, rd)
 				rd.Close()
 				if err != nil {
-					log.Printf("Error handling request for %s: %s\n", r.URL.Path, err)
+					log.Printf("处理请求出错 %s: %s\n", r.URL.Path, err)
 				}
 			} else {
 				if b.FileType() != "epub" {
 					w.WriteHeader(http.StatusNotFound)
-					io.WriteString(w, "Not found")
+					io.WriteString(w, "未找到")
 					return
 				}
 				td, err := ioutil.TempDir("", "kepubify")
 				if err != nil {
 					w.WriteHeader(http.StatusInternalServerError)
-					log.Printf("Error handling request for %s: %s\n", r.URL.Path, err)
-					io.WriteString(w, "Internal Server Error")
+					log.Printf("处理请求出错 %s: %s\n", r.URL.Path, err)
+					io.WriteString(w, "内部服务器错误")
 					return
 				}
 				defer os.RemoveAll(td)
@@ -270,15 +270,15 @@ func (s *Server) handleDownload(w http.ResponseWriter, r *http.Request, p httpro
 				err = (&kepub.Converter{}).Convert(b.FilePath, kepubf)
 				if err != nil {
 					w.WriteHeader(http.StatusInternalServerError)
-					log.Printf("Error handling request for %s: %s\n", r.URL.Path, err)
-					io.WriteString(w, "Internal Server Error - Error converting book")
+					log.Printf("处理请求出错 %s: %s\n", r.URL.Path, err)
+					io.WriteString(w, "内部服务器错误 - 转换图书时出错")
 					return
 				}
 				rd, err := os.Open(kepubf)
 				if err != nil {
 					w.WriteHeader(http.StatusInternalServerError)
-					io.WriteString(w, "Error handling request")
-					log.Printf("Error handling request for %s: %s\n", r.URL.Path, err)
+					io.WriteString(w, "处理请求出错")
+					log.Printf("处理请求出错 %s: %s\n", r.URL.Path, err)
 					return
 				}
 				w.Header().Set("Content-Disposition", "attachment; filename="+url.PathEscape(b.Title)+".kepub.epub")
@@ -286,7 +286,7 @@ func (s *Server) handleDownload(w http.ResponseWriter, r *http.Request, p httpro
 				_, err = io.Copy(w, rd)
 				rd.Close()
 				if err != nil {
-					log.Printf("Error handling request for %s: %s\n", r.URL.Path, err)
+					log.Printf("处理请求出错 %s: %s\n", r.URL.Path, err)
 				}
 			}
 			return
@@ -294,7 +294,7 @@ func (s *Server) handleDownload(w http.ResponseWriter, r *http.Request, p httpro
 	}
 
 	w.WriteHeader(http.StatusNotFound)
-	io.WriteString(w, "Could not find book with id "+bid)
+	io.WriteString(w, "未找到图书 id "+bid)
 }
 
 func (s *Server) handleAuthors(w http.ResponseWriter, r *http.Request, _ httprouter.Params) {
@@ -340,12 +340,12 @@ func (s *Server) handleAuthor(w http.ResponseWriter, r *http.Request, p httprout
 
 	s.render.HTML(w, http.StatusNotFound, "notfound", map[string]interface{}{
 		"CurVersion":       s.version,
-		"PageTitle":        "Not Found",
+		"PageTitle":        "未找到",
 		"ShowBar":          false,
 		"ShowSearch":       false,
 		"ShowViewSelector": false,
-		"Title":            "Not Found",
-		"Message":          "Author not found.",
+		"Title":            "未找到",
+		"Message":          "作者未找到.",
 	})
 }
 
@@ -438,12 +438,12 @@ func (s *Server) handleBook(w http.ResponseWriter, r *http.Request, p httprouter
 
 	s.render.HTML(w, http.StatusNotFound, "notfound", map[string]interface{}{
 		"CurVersion":       s.version,
-		"PageTitle":        "Not Found",
+		"PageTitle":        "未找到",
 		"ShowBar":          false,
 		"ShowSearch":       false,
 		"ShowViewSelector": false,
-		"Title":            "Not Found",
-		"Message":          "Book not found.",
+		"Title":            "未找到",
+		"Message":          "图书未找到.",
 	})
 }
 
