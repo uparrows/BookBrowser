@@ -138,7 +138,8 @@ func (s *Server) initRouter() {
 
 	s.router.GET("/api/indexer", func(w http.ResponseWriter, r *http.Request, _ httprouter.Params) {
 		w.Header().Set("Cache-Control", "no-cache")
-		w.Header().Set("Content-Type", "application/json")
+		w.Header().Set("Content-Type", "application/json; charset=utf-8")
+		w.Header().Set("X-Content-Type-Options","nosniff")
 		fmt.Fprintf(w, `{"indexing": %t, "progress": %f}`, s.Indexer.Progress != 0, s.Indexer.Progress)
 	})
 

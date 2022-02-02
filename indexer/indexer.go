@@ -75,7 +75,7 @@ func (i *Indexer) Refresh() ([]error, error) {
 			if err != nil {
 				errs = append(errs, errors.Wrapf(err, "error scanning '%s' for type '%s'", path, ext))
 				if i.Verbose {
-					log.Printf("Error: %v", errs[len(errs)-1])
+					log.Printf("错误: %v", errs[len(errs)-1])
 				}
 			}
 		}
@@ -90,7 +90,7 @@ func (i *Indexer) Refresh() ([]error, error) {
 		if err != nil {
 			errs = append(errs, errors.Wrapf(err, "error reading book '%s'", filepath))
 			if i.Verbose {
-				log.Printf("--> Error: %v", errs[len(errs)-1])
+				log.Printf("--> 错误: %v", errs[len(errs)-1])
 			}
 			continue
 		}
