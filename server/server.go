@@ -239,7 +239,7 @@ func (s *Server) handleDownload(w http.ResponseWriter, r *http.Request, p httpro
 					return
 				}
 
-				w.Header().Set("Content-Disposition", `attachment; filename="`+regexp.MustCompile("[[:^ascii:]]").ReplaceAllString(b.Title, "_")+`.`+b.FileType()+`"`)
+				w.Header().Set("Content-Disposition", `attachment; filename="`+regexp.MustCompile(`[\P{Han}]  `).ReplaceAllString(b.Title, "_")+`.`+b.FileType()+`"`)
 				switch b.FileType() {
 				case "epub":
 					w.Header().Set("Content-Type", "application/epub+zip")
