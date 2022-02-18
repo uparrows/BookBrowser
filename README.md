@@ -16,72 +16,53 @@ This repo is a fork of pgaskin/BookBrowser ，what i've done was translated this
 
 
 # 特征
-多种书籍格式
 
-电子版
+多种书籍格式：epub、pdf、mobi（基本支持）
 
-pdf
+搜索、高级搜索、搜索任意字段组合、查看结果中的所有信息
 
-mobi（基本支持）
+列表显示、响应式网页界面、更新通知
 
-搜索
+浏览方式：作者 系列
 
-高级搜索
+排序：最后添加、按字母顺序、基于网络的阅读器
 
-搜索任意字段组合
+自定义字体、颜色、大小、间距、记住你的阅读位置
 
-查看结果中的所有信息
-
-列表显示
-
-响应式网页界面
-
-更新通知
-
-浏览方式：
-
-作者
-
-系列
-
-排序：
-
-最后添加
-
-按字母顺序
-
-基于网络的阅读器
-
-自定义字体、颜色、大小、间距
-
-记住你的阅读位置
-
-图书搜索
-
-使用方便快速
-
-没有额外的依赖
+图书搜索、使用方便快速、没有额外的依赖
 
 ## 截图
 
-![book-desktop](https://user-images.githubusercontent.com/38988286/147832550-ed71ee21-a5cb-475e-b25f-35a7f84a38f3.png)
-![books-list-mobile](https://user-images.githubusercontent.com/38988286/147832556-95db2d72-8b03-4d01-8ae6-5ce38091bd68.png)
-![authors-mobile](https://user-images.githubusercontent.com/38988286/147832558-bd7f99da-4ac3-4ff8-b62f-bf627d00755b.png)
+![book-desktop](https://user-images.githubusercontent.com/38988286/154711303-3ada9ec4-ae50-4aeb-8a0e-7ad10b42106a.png)
+![books-list](https://user-images.githubusercontent.com/38988286/154710906-3b1d5caa-f1d6-4be6-a2fe-07cc069c5625.png)
+![authors](https://user-images.githubusercontent.com/38988286/154710639-cccf44f7-7fb8-4c5d-b075-caa9c84bf4e4.png)
 ![book-mobile](https://user-images.githubusercontent.com/38988286/147832566-72e6db38-20a8-48f3-8ebb-4ea2738e7d45.png)
 
 
 ## 阅读器截图
 
 | 桌面 | 移动 |
-| --- | --- |
-| ![reader-desktop](https://user-images.githubusercontent.com/38988286/147832624-020b8bb9-5906-4fbc-87c4-947821812ce2.png) |![reader-mobile](https://user-images.githubusercontent.com/38988286/147832639-93d2e5f5-4179-4af0-9091-86e1071eb041.png)
+
+| ![reader-desktop](https://user-images.githubusercontent.com/38988286/154710045-f12664e6-abfd-4382-8216-8a86f69df104.png) |![reader-mobile](https://user-images.githubusercontent.com/38988286/147832639-93d2e5f5-4179-4af0-9091-86e1071eb041.png)
  |
+ 
+ ## pdf阅读功能
+ ![6](https://user-images.githubusercontent.com/38988286/154708600-0d7c741c-fb91-454e-b03a-2084d318ff1c.png)
+
 
 ## 高级搜索
 
 
 
 | ![list-desktop](https://user-images.githubusercontent.com/38988286/147832650-e8a4cb77-59ff-4aa3-ae92-c623e4e2f1da.png)
+
+## 图书下载
+
+![7](https://user-images.githubusercontent.com/38988286/154708929-ab3abafb-804f-4822-a96f-541f3fe0e8f9.png)
+
+## 手机客户端 beta
+
+![12](https://user-images.githubusercontent.com/38988286/154712377-4ba41fd9-bbd4-4321-ad1b-97482266bab2.jpg)
 
 
 ## 系统要求
